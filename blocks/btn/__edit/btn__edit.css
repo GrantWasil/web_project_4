@@ -1,0 +1,14 @@
+.btn__edit {
+	border: 1px solid #fff;
+	box-sizing: border-box;
+	width: 23px;
+	height: 23px;
+	padding: 0;
+}
+
+@media (max-width: 450px) {
+	.btn__edit {
+		width: 18px;
+		height: 18px;
+	}
+}

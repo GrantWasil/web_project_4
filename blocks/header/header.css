@@ -2,8 +2,6 @@
 
 .header {
 	padding-top: 45px;
-	width: calc(100% - 31.09%);
-	margin: auto;
 }
 
 @media (max-width: 450px) {
