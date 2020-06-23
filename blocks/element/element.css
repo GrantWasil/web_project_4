@@ -1,0 +1,9 @@
+@import url(./__image/element__image.css);
+@import url(./__info/element__info.css);
+@import url(./__info-name/element__info-name.css);
+@import url(./__info-like/element__info-like.css);
+
+.element {
+	display: flex;
+	flex-direction: column;
+}

@@ -1,0 +1,6 @@
+.element__info {
+	display: flex;
+	background-color: white;
+	justify-content: space-around;
+	border-radius: 0 0 10px 10px;
+}
