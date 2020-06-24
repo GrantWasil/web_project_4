@@ -13,7 +13,7 @@
         <hr class="header__line">
       </header>
 
-      <div class="profile container">
+      <section class="profile container">
         <img class="profile__avatar" src="./images/avatar.png" alt="The profile picture of the user">
         <div class="profile__info">
           <p class="profile__info-name">Jacques Cousteau</p>
@@ -25,9 +25,22 @@
         <button class="btn btn__new">
           <img class="btn__new-img" src="./images/plus.svg" alt="A plus sign for a new edit">
         </button>
-      </div>
+      </section>
 
-      <div class="elements container">
+      <section class="popup popup_opened">
+        <div class="popup__overlay"></div>
+        <div class="popup__container">
+          <img class="popup__close" src="./images/close.svg">
+          <h3 class="popup__container-title">Edit Profile</h3>
+          <input class="popup__container-name" placeholder="Name">
+          <hr class="popup__container-underline">
+          <input class="popup__container-about" placeholder="About me">
+          <hr class="popup__container-underline">
+          <button class="popup__container-save">Save</button>
+        </div>
+      </section>
+
+      <section class="elements container">
         <div class="element">
           <img class="element__image" src="./images/yosemite.png" alt="">
           <div class="element__info">
@@ -70,7 +83,7 @@
             <img class="element__info-like" src="./images/like.svg">
           </div>
         </div>
-      </div>
+      </section>
 
       <footer class="footer container">
         <p class="footer__copyright">© 2020 Around The U.S.</p>

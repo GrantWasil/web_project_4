@@ -1,0 +1,7 @@
+.popup__close {
+	z-index: 2;
+	position: relative;
+	top: -30px;
+	left: 420px;
+	width: 40.7px;
+}

@@ -1,0 +1,17 @@
+@import url(./__container/popup__container.css);
+@import url(./__overlay/popup__overlay.css);
+@import url(./__container-about/popup__container-about.css);
+@import url(./__container-name/popup__container-name.css);
+@import url(./__container-save/popup__container-save.css);
+@import url(./__container-title/popup__container-title.css);
+@import url(./__container-underline/popup__container-underline.css);
+@import url(./__close/popup__close.css);
+
+.popup {
+	position: fixed; 
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
