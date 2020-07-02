@@ -1,12 +1,12 @@
-let profile = document.querySelector('.profile');
-let editButton = profile.querySelector('.btn__edit');
-let popup = document.querySelector('.popup');
-let closeButton = popup.querySelector('.popup__close');
-let profileName = profile.querySelector('.profile__info-name');
-let profileInfo = profile.querySelector('.profile__info-title');
-let popupName = popup.querySelector('.popup__container-name');
-let popupAbout = popup.querySelector('.popup__container-about');
-let saveButton = popup.querySelector('.popup__container-save');
+const profile = document.querySelector('.profile');
+const editButton = profile.querySelector('.btn__edit');
+const popup = document.querySelector('.popup');
+const closeButton = popup.querySelector('.popup__close');
+const profileName = profile.querySelector('.profile__info-name');
+const profileInfo = profile.querySelector('.profile__info-title');
+const popupName = popup.querySelector('.popup__container-name');
+const popupAbout = popup.querySelector('.popup__container-about');
+const saveButton = popup.querySelector('.popup__container-save');
 
 popupName.value = profileName.innerHTML;
 popupAbout.value = profileInfo.innerHTML;

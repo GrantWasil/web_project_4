@@ -1,7 +1,13 @@
 .popup__close {
-	z-index: 2;
+	z-index: 3;
 	position: relative;
-	top: -30px;
 	left: 420px;
-	width: 40.7px;
+	bottom: 360px;
+}
+
+@media (max-width: 450px) {
+	.popup__close {
+		left: 90%;
+		bottom: 360px;
+	}
 }

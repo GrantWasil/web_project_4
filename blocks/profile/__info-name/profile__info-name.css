@@ -3,7 +3,12 @@
 	font-size: 42px;
 	line-height: 56px;
 	margin: 0;
-	padding-right: 24px;
+	padding-bottom: 16px;
+	max-width: 400px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-height: 50px;
 }
 
 @media (max-width: 450px) {

@@ -1,16 +1,15 @@
 .profile__info {
-	margin-left: 30px;
+	margin: 21.75px 0 0 30px;
 	color: white;
 	display: flex;
-	width: 428px;
-	flex-wrap: wrap;
-	align-items: center;
+	flex-direction: column;
+	max-width: 428px;
 }
 
 @media (max-width: 450px) {
 	.profile__info {
-		flex-direction: column;
-		margin: 10.25px 0 64px 0;
-		width: 100%;
+		max-width: 201px;
+		margin: 14px auto 36px;
+		text-align: center;
 	}
 }

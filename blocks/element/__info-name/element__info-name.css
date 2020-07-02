@@ -2,4 +2,9 @@
 	font-size: 24px;
 	font-weight: 900;
 	line-height: 29px;
+	max-width: 210px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-height: 30px;
 }
