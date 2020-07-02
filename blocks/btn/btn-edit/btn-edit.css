@@ -1,0 +1,22 @@
+.btn-edit {
+	border: 1px solid #fff;
+	box-sizing: border-box;
+	width: 23px;
+	height: 23px;
+	padding: 0;
+	margin: 40.75px 0 0 24px;
+	background-image: url(../../../images/edit.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+@media (max-width: 450px) {
+	.btn-edit {
+		width: 18px;
+		height: 18px;
+		position: absolute;
+		margin: 0;
+		top: 288px;
+		right: 47px;
+	}
+}
