@@ -1,0 +1,11 @@
+.element__info-like {
+	background-image: url(../../../images/like.svg);
+	border: none;
+	background-repeat: none;
+	background-position: center;
+	background-color: white;
+	background-size: auto;
+	width: 20.76px;
+	height: 19px;
+	align-self: center;
+}

@@ -1,8 +1,16 @@
 .popup__close {
 	z-index: 3;
 	position: relative;
-	left: 420px;
-	bottom: 360px;
+	left: 425px;
+	bottom: 350px;
+	background-image: url(../../../images/close.svg);
+	width: 41px;
+	height: 41px;
+	border: none;
+	background-color: transparent;
+	background-size: auto;
+	background-position: center;
+
 }
 
 @media (max-width: 450px) {

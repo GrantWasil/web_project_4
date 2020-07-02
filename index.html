@@ -1,4 +1,4 @@
-<!-- Hey Semyon, thanks for your help! I appreciate your feedback with my project and I think I've fixed most of the things that you've pointed out. My goal is be able to submit my final revision on my third attempt, so I'd apprecaite all of your advice to help me with that! I'm very excited to become a better coder because of you. Thank you! -->
+<!-- Hey Semyon! Thanks for the quick review. I'v fixed everything that "needs fixing" and I believe that we should be good for approval. The buttons were messing me up at first, but I've taken another swing at it, and I think that I've solved it! Thanks again for your help. I appreciate the work you put into this!-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,60 +14,62 @@
         <img class="logo" src="./images/logo.svg" alt="Around the US Logo">
       </header>
 
-      <section class="profile container">
-        <img class="profile__avatar" src="./images/avatar.png" alt="The profile picture of the user">
-        <div class="profile__info">
-          <p class="profile__info-name">Jacques Cousteau</p>
-          <p class="profile__info-title">Explorer</p>
-        </div>
-        <button class="btn btn__edit"></button>
-        <button class="btn btn__new"></button>
-      </section>
+      <main>
+        <section class="profile container">
+          <img class="profile__avatar" src="./images/avatar.png" alt="The profile picture of the user">
+          <div class="profile__info">
+            <h1 class="profile__info-name">Jacques Cousteau</h1>
+            <p class="profile__info-title">Explorer</p>
+          </div>
+          <button class="btn btn-edit"></button>
+          <button class="btn btn-new"></button>
+        </section>
 
-      <section class="elements container">
-        <div class="element">
-          <img class="element__image" src="./images/yosemite.png" alt="Yosemite Valley river and trees">
-          <div class="element__info">
-            <h3 class="element__info-name">Yosemite Valley</h3>
-            <img class="element__info-like" src="./images/like.svg">
+        <section class="elements container">
+          <div class="element">
+            <img class="element__image" src="./images/yosemite.png" alt="Yosemite Valley river and trees">
+            <div class="element__info">
+              <h3 class="element__info-name">Yosemite Valley</h3>
+              <button class="element__info-like"></button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/louise.png" alt="Lake Louise with mountains">
-          <div class="element__info">
-            <h3 class="element__info-name">Lake Louise</h3>
-            <img class="element__info-like" src="./images/like.svg">
+          <div class="element">
+            <img class="element__image" src="./images/louise.png" alt="Lake Louise with mountains">
+            <div class="element__info">
+              <h3 class="element__info-name">Lake Louise</h3>
+              <button class="element__info-like"></button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/bald.png" alt="Bald Mountains with a sunset">
-          <div class="element__info">
-            <h3 class="element__info-name">Bald Mountains</h3>
-            <img class="element__info-like" src="./images/like.svg">
+          <div class="element">
+            <img class="element__image" src="./images/bald.png" alt="Bald Mountains with a sunset">
+            <div class="element__info">
+              <h3 class="element__info-name">Bald Mountains</h3>
+              <button class="element__info-like"></button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/latemar.png" alt="Latemar mountains with a night sky">
-          <div class="element__info">
-            <h3 class="element__info-name">Latemar</h3>
-            <img class="element__info-like" src="./images/like.svg">
+          <div class="element">
+            <img class="element__image" src="./images/latemar.png" alt="Latemar mountains with a night sky">
+            <div class="element__info">
+              <h3 class="element__info-name">Latemar</h3>
+              <button class="element__info-like"></button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/vanois.png" alt="Vanois National Park with a lake view">
-          <div class="element__info">
-            <h3 class="element__info-name">Vanois National Park</h3>
-            <img class="element__info-like" src="./images/like.svg">
+          <div class="element">
+            <img class="element__image" src="./images/vanois.png" alt="Vanois National Park with a lake view">
+            <div class="element__info">
+              <h3 class="element__info-name">Vanois National Park</h3>
+              <button class="element__info-like"></button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/lago.png" alt="Lago di Braies with a few boats on a lake">
-          <div class="element__info">
-            <h3 class="element__info-name">Lago di Braies</h3>
-            <img class="element__info-like" src="./images/like.svg">
+          <div class="element">
+            <img class="element__image" src="./images/lago.png" alt="Lago di Braies with a few boats on a lake">
+            <div class="element__info">
+              <h3 class="element__info-name">Lago di Braies</h3>
+              <button class="element__info-like"></button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <footer class="footer container">
         <p class="footer__copyright">© 2020 Around The U.S.</p>
@@ -80,7 +82,7 @@
           <input class="popup__container-name" placeholder="Name">
           <input class="popup__container-about" placeholder="About me">
           <button class="popup__container-save">Save</button>
-          <img class="popup__close" src="./images/close.svg">
+          <button class="popup__close"></button>
         </div>
       </section>
 
