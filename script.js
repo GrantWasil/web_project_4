@@ -6,7 +6,7 @@ const profileName = profile.querySelector('.profile__info-name');
 const profileInfo = profile.querySelector('.profile__info-title');
 const popupName = popup.querySelector('.popup__container-name');
 const popupAbout = popup.querySelector('.popup__container-about');
-const saveButton = popup.querySelector('.popup__container-save');
+const form = popup.querySelector('.popup__form');
 
 popupName.value = profileName.innerHTML;
 popupAbout.value = profileInfo.innerHTML;
@@ -24,6 +24,7 @@ function updateProfile() {
 editButton.addEventListener('click', popupToggle);
 closeButton.addEventListener('click', popupToggle);
 saveButton.addEventListener('click', updateProfile);
+form.addEventListener('onSubmit', updateProfile);
 
 
 
