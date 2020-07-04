@@ -15,7 +15,8 @@ function popupToggle() {
 	popup.classList.toggle('popup_opened');
 }
 
-function updateProfile() {
+function updateProfile(evt) {
+	evt.preventDefault();
 	profileName.textContent = popupName.value; 
 	profileInfo.textContent = popupAbout.value;
 	popupToggle();
@@ -23,8 +24,7 @@ function updateProfile() {
 
 editButton.addEventListener('click', popupToggle);
 closeButton.addEventListener('click', popupToggle);
-saveButton.addEventListener('click', updateProfile);
-form.addEventListener('onSubmit', updateProfile);
+form.addEventListener('submit', updateProfile);
 
 
 
