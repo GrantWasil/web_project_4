@@ -1,0 +1,13 @@
+.element__delete {
+	z-index: 3;
+	position: relative;
+	background-image: url(../../../images/trash.svg);
+	border: none;
+	background-color: transparent;
+	background-size: auto;
+	background-position: center;
+	width: 18px;
+	height: 19.3px;
+	top: 38px;
+	left: 88.6%;
+}

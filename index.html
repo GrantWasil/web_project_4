@@ -26,67 +26,39 @@
         </section>
 
         <section class="elements container">
-          <div class="element">
-            <img class="element__image" src="./images/yosemite.png" alt="Yosemite Valley river and trees">
-            <div class="element__info">
-              <h2 class="element__info-name">Yosemite Valley</h2>
-              <button class="element__info-like" aria-label="Like" type="button"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img class="element__image" src="./images/louise.png" alt="Lake Louise with mountains">
-            <div class="element__info">
-              <h2 class="element__info-name">Lake Louise</h2>
-              <button class="element__info-like" aria-label="Like" type="button"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img class="element__image" src="./images/bald.png" alt="Bald Mountains with a sunset">
-            <div class="element__info">
-              <h2 class="element__info-name">Bald Mountains</h2>
-              <button class="element__info-like" aria-label="Like" type="button"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img class="element__image" src="./images/latemar.png" alt="Latemar mountains with a night sky">
-            <div class="element__info">
-              <h2 class="element__info-name">Latemar</h2>
-              <button class="element__info-like" aria-label="Like" type="button"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img class="element__image" src="./images/vanois.png" alt="Vanois National Park with a lake view">
-            <div class="element__info">
-              <h2 class="element__info-name">Vanois National Park</h2>
-              <button class="element__info-like" aria-label="Like" type="button"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img class="element__image" src="./images/lago.png" alt="Lago di Braies with a few boats on a lake">
-            <div class="element__info">
-              <h2 class="element__info-name">Lago di Braies</h2>
-              <button class="element__info-like" aria-label="Like" type="button"></button>
-            </div>
-          </div>
+          
         </section>
       </main>
 
       <footer class="footer container">
         <p class="footer__copyright">© 2020 Around The U.S.</p>
       </footer>
-
-      <section class="popup">
-        <div class="popup__overlay"></div>
-        <div class="popup__container">
-          <h3 class="popup__container-title">Edit Profile</h3>
-          <form class="popup__form">
-            <input class="popup__container-name" placeholder="Name" type="text" name="name">
-            <input class="popup__container-about" placeholder="About me" type="text" name="about">
-            <button class="popup__container-save">Save</button>
-            <button class="popup__close" aria-label="Close" type="reset"></button>
-          </form>
+      
+      <template id="element">
+        <div class="element">
+          <button class="element__delete" aria-label="Remove" type="button"></button>
+          <img class="element__image">
+          <div class="element__info">
+            <h2 class="element__info-name"></h2>
+            <button class="element__info-like" aria-label="Like" type="button"></button>
+          </div>
         </div>
-      </section>
+      </template>
+
+      <template id="popup">
+        <section class="popup">
+        <div class="popup__overlay"></div>
+          <div class="popup__container">
+            <h3 class="popup__container-title"></h3>
+            <form class="popup__form">
+              <input class="popup__container-name" placeholder="Name" type="text" name="name">
+              <input class="popup__container-about" placeholder="About me" type="text" name="about">
+              <button class="popup__container-save">Save</button>
+              <button class="popup__close" aria-label="Close" type="reset"></button>
+            </form>
+          </div>
+        </section>
+      </template>
 
       <script src="./script.js"></script>
     </div>

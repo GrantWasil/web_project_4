@@ -1,0 +1,5 @@
+.element__info-like_active {
+	background: #000;
+	background-image: url(../../../../images/like_filled.svg);
+	z-index: 2;
+}
