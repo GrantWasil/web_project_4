@@ -1,5 +1,4 @@
 .element__delete {
-	z-index: 3;
 	position: relative;
 	background-image: url(../../../images/trash.svg);
 	border: none;

@@ -40,11 +40,13 @@ const updateProfile = (popupName, popupAbout) => {
 const addElement = (nameValue, linkValue) => {
 	const elementTemplate = document.querySelector('#element').content;
 	const newElement = elementTemplate.cloneNode(true);
+	const image = newElement.querySelector('.element__image'); 
 
-	newElement.querySelector('.element__image').src = linkValue;
+	image.src = linkValue;
 	newElement.querySelector('.element__info-name').textContent = nameValue;
 	const likeButton = newElement.querySelector('.element__info-like');
 	const trashButton = newElement.querySelector('.element__delete');
+
 
 	likeButton.addEventListener('click', (e) => {
 		e.target.classList.toggle('element__info-like_active');
@@ -55,7 +57,27 @@ const addElement = (nameValue, linkValue) => {
 		targetElement.remove();
 	})
 
+	image.addEventListener('click', () => {
+		addPicture(nameValue, linkValue);
+	})
+
 	elementsContainer.append(newElement);
+}
+
+const addPicture = (nameValue, linkValue) => {
+	const pictureTemplate = document.querySelector('#picture').content;
+	const newPicture = pictureTemplate.cloneNode(true);
+
+	newPicture.querySelector('.picture__container-image').src = linkValue;
+	newPicture.querySelector('.picture__container-title').textContent = nameValue;
+	const closeButton = newPicture.querySelector('.picture__container-close');
+
+	closeButton.addEventListener('click', () => {
+		const targetPicture = closeButton.closest('.picture');
+		targetPicture.remove();
+	})
+
+	pageContainer.append(newPicture);
 }
 
 const addPopup = (titleValue, namePlaceholder, aboutPlaceholder, saveFunction, defaultName="", defaultAbout="") => {

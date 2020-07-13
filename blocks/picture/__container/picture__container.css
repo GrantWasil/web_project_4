@@ -1,0 +1,9 @@
+.picture__container {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	max-width: 75vw;
+	max-height: 75vh;
+	margin: 0 auto;
+	z-index: 5;
+}
