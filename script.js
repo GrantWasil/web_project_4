@@ -54,13 +54,17 @@ const addElement = (nameValue, linkValue) => {
 
 	trashButton.addEventListener('click', () => {
 		const targetElement = trashButton.closest('.element');
-		targetElement.remove();
+		targetElement.classList.add('fade-out')
+		window.setTimeout(() => {
+			targetElement.remove();
+		}, 450)
 	})
 
 	image.addEventListener('click', () => {
 		addPicture(nameValue, linkValue);
 	})
 
+	newElement.querySelector('.element').classList.add('fade-in')
 	elementsContainer.append(newElement);
 }
 
@@ -74,9 +78,14 @@ const addPicture = (nameValue, linkValue) => {
 
 	closeButton.addEventListener('click', () => {
 		const targetPicture = closeButton.closest('.picture');
-		targetPicture.remove();
+		targetPicture.classList.add('fade-out');
+		window.setTimeout(() => {
+			targetPicture.remove();
+		}, 450)
+		
 	})
 
+	newPicture.querySelector('.picture').classList.add('fade-in');
 	pageContainer.append(newPicture);
 }
 
@@ -96,7 +105,10 @@ const addPopup = (titleValue, namePlaceholder, aboutPlaceholder, saveFunction, d
 
 	closeButton.addEventListener('click', () => {
 		const targetPopup = closeButton.closest('.popup');
-		targetPopup.remove();
+		targetPopup.classList.add('fade-out');
+		window.setTimeout(() => {
+			targetPopup.remove();
+		}, 450);
 	})
 
 	saveButton.addEventListener('click', (e) => {
@@ -105,9 +117,13 @@ const addPopup = (titleValue, namePlaceholder, aboutPlaceholder, saveFunction, d
 		const popupAbout = targetPopup.querySelector('.popup__container-about');
 		e.preventDefault();
 		saveFunction(popupName.value, popupAbout.value);
-		targetPopup.remove();
-	})
+		targetPopup.classList.add('fade-out');
+		window.setTimeout(() => {
+			targetPopup.remove();
+		}, 450);
+	});
 
+	newPopup.querySelector('.popup').classList.add('fade-in');
 	pageContainer.append(newPopup);
 }
 
