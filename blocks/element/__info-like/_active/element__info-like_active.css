@@ -1,5 +1,22 @@
+@keyframes like-active {
+	from {
+		opacity: 30%;
+	}
+	to {
+		opacity: 100%;
+	}
+}
+
 .element__info-like_active {
+	animation: like-active 2s;
 	background: #000;
 	background-image: url(../../../../images/like_filled.svg);
-	z-index: 2;
+	border: none;
+	background-repeat: none;
+	background-position: center;
+	background-color: white;
+	background-size: auto;
+	width: 20.76px;
+	height: 19px;
+	align-self: center;
 }

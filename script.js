@@ -50,6 +50,7 @@ const addElement = (nameValue, linkValue) => {
 
 	likeButton.addEventListener('click', (e) => {
 		e.target.classList.toggle('element__info-like_active');
+		e.target.classList.toggle('element__info-like');
 	})
 
 	trashButton.addEventListener('click', () => {

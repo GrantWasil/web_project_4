@@ -11,3 +11,7 @@
 	height: 19px;
 	align-self: center;
 }
+
+.element__info-like:hover {
+	opacity: 50%;
+}
