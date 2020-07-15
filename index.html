@@ -28,6 +28,16 @@
         <section class="elements container">
           
         </section>
+
+      <div class="picture">
+        <div class="picture__overlay"></div>
+        <div class="picture__container">
+          <button class="picture__container-close" aria-label="Close" type="button"></button>
+          <img class="picture__container-image">
+          <p class="picture__container-title"></p>
+        </div>
+      </div>
+      
       </main>
 
       <footer class="footer container">
@@ -45,8 +55,8 @@
         </div>
       </template>
 
-      <template id="popup">
-        <section class="popup">
+      <template id="popup-new">
+        <section class="popup popup-new">
           <div class="popup__overlay"></div>
           <div class="popup__container">
             <h3 class="popup__container-title"></h3>
@@ -60,17 +70,21 @@
         </section>
       </template>
 
-      <template id="picture">
-        <div class="picture">
-          <div class="picture__overlay"></div>
-          <div class="picture__container">
-            <button class="picture__container-close" aria-label="Close" type="button"></button>
-            <img class="picture__container-image">
-            <p class="picture__container-title"></p>
-          </div>
+      <template id="popup-edit">
+        <section class="popup popup-edit">
+          <div class="popup__overlay"></div>
+          <div class="popup__container">
+            <h3 class="popup__container-title"></h3>
+            <form class="popup__form">
+              <input class="popup__container-name" placeholder="Name" type="text" name="name">
+              <input class="popup__container-about" placeholder="About me" type="text" name="about">
+              <button class="popup__container-save">Save</button>
+              <button class="popup__close" aria-label="Close" type="reset"></button>
+            </form>
         </div>
+        </section>
       </template>
-
+    
       <script src="./script.js"></script>
     </div>
   </body>

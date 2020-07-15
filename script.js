@@ -4,6 +4,8 @@ const newButton = profile.querySelector('.btn-new');
 const profileName = profile.querySelector('.profile__info-name');
 const profileInfo = profile.querySelector('.profile__info-title');
 const elementsContainer = document.querySelector('.elements');
+const picture = document.querySelector('.picture');
+const pictureClose = document.querySelector('.picture__container-close');
 const pageContainer = document.querySelector('.page');
 const initialCards = [
     {
@@ -31,6 +33,62 @@ const initialCards = [
         link: "https://code.s3.yandex.net/web-code/lago.jpg"
     }
 ];
+
+const addEditPopup = () => {
+	const popupTemplate = document.querySelector('#popup-edit').content;
+	const newPopup = popupTemplate.cloneNode(true);
+	const name = newPopup.querySelector('.popup__container-name');
+	const about = newPopup.querySelector('.popup__container-about');
+	const container = newPopup.querySelector('.popup-edit');
+
+	newPopup.querySelector('.popup__container-title').textContent = 'Edit Profile';
+	name.placeholder = 'Name';
+	name.value = profileName.textContent;
+	about.placeholder = 'About Me';
+	about.value = profileInfo.textContent;
+	const closeButton = newPopup.querySelector('.popup__close');
+	const saveButton = newPopup.querySelector('.popup__container-save');
+
+	closeButton.addEventListener('click', () => container.classList.toggle('popup_opened'));
+
+	saveButton.addEventListener('click', (e) => {
+		const targetPopup = saveButton.closest('.popup-edit');
+		const popupName = targetPopup.querySelector('.popup__container-name');
+		const popupAbout = targetPopup.querySelector('.popup__container-about');
+		e.preventDefault();
+		updateProfile(popupName.value, popupAbout.value);
+		container.classList.toggle('popup_opened');
+	});
+
+	pageContainer.append(newPopup);
+}
+
+const addNewPopup = () => {
+	const popupTemplate = document.querySelector('#popup-new').content;
+	const newPopup = popupTemplate.cloneNode(true);
+	const name = newPopup.querySelector('.popup__container-name');
+	const about = newPopup.querySelector('.popup__container-about');
+	const container = newPopup.querySelector('.popup-new');
+
+	newPopup.querySelector('.popup__container-title').textContent = 'New Place';
+	name.placeholder = 'Title';
+	about.placeholder = 'Image URL';
+	const closeButton = newPopup.querySelector('.popup__close');
+	const saveButton = newPopup.querySelector('.popup__container-save');
+
+	closeButton.addEventListener('click', () => container.classList.toggle('popup_opened'));
+
+	saveButton.addEventListener('click', (e) => {
+		const targetPopup = saveButton.closest('.popup');
+		const popupName = targetPopup.querySelector('.popup__container-name');
+		const popupAbout = targetPopup.querySelector('.popup__container-about');
+		e.preventDefault();
+		addElement(popupName.value, popupAbout.value);
+		container.classList.toggle('popup_opened');
+	});
+
+	pageContainer.append(newPopup);
+}
 
 const updateProfile = (popupName, popupAbout) => {
 	profileName.textContent = popupName; 
@@ -62,113 +120,30 @@ const addElement = (nameValue, linkValue) => {
 	})
 
 	image.addEventListener('click', () => {
-		addPicture(nameValue, linkValue);
+		editPicture(nameValue, linkValue);
+		document.querySelector('.picture').classList.toggle('picture_active');
 	})
 
 	newElement.querySelector('.element').classList.add('fade-in')
 	elementsContainer.append(newElement);
 }
 
-const addPicture = (nameValue, linkValue) => {
-	const pictureTemplate = document.querySelector('#picture').content;
-	const newPicture = pictureTemplate.cloneNode(true);
+const editPicture = (nameValue, linkValue) => {
+	const pictureTitle = document.querySelector('.picture__container-title');
+	const pictureUrl = document.querySelector('.picture__container-image');
 
-	newPicture.querySelector('.picture__container-image').src = linkValue;
-	newPicture.querySelector('.picture__container-title').textContent = nameValue;
-	const closeButton = newPicture.querySelector('.picture__container-close');
-
-	closeButton.addEventListener('click', () => {
-		const targetPicture = closeButton.closest('.picture');
-		targetPicture.classList.add('fade-out');
-		window.setTimeout(() => {
-			targetPicture.remove();
-		}, 450)
-		
-	})
-
-	newPicture.querySelector('.picture').classList.add('fade-in');
-	pageContainer.append(newPicture);
+	pictureTitle.textContent = nameValue;
+	pictureUrl.src= linkValue;
 }
 
-const addEditPopup = () => {
-	const popupTemplate = document.querySelector('#popup').content;
-	const newPopup = popupTemplate.cloneNode(true);
-	const name = newPopup.querySelector('.popup__container-name');
-	const about = newPopup.querySelector('.popup__container-about');
-
-	newPopup.querySelector('.popup__container-title').textContent = 'Edit Profile';
-	name.placeholder = 'Name';
-	name.value = profileName.textContent;
-	about.placeholder = 'About Me';
-	about.value = profileInfo.textContent;
-	const closeButton = newPopup.querySelector('.popup__close');
-	const saveButton = newPopup.querySelector('.popup__container-save');
-
-	closeButton.addEventListener('click', () => {
-		const targetPopup = closeButton.closest('.popup');
-		targetPopup.classList.add('fade-out');
-		window.setTimeout(() => {
-			targetPopup.remove();
-		}, 450);
-	})
-
-	saveButton.addEventListener('click', (e) => {
-		const targetPopup = saveButton.closest('.popup');
-		const popupName = targetPopup.querySelector('.popup__container-name');
-		const popupAbout = targetPopup.querySelector('.popup__container-about');
-		e.preventDefault();
-		updateProfile(popupName.value, popupAbout.value);
-		targetPopup.classList.add('fade-out');
-		window.setTimeout(() => {
-			targetPopup.remove();
-		}, 450);
-	});
-
-	newPopup.querySelector('.popup').classList.add('fade-in');
-	pageContainer.append(newPopup);
-}
-
-const addNewPopup = (namePlaceholder, aboutPlaceholder) => {
-	const popupTemplate = document.querySelector('#popup').content;
-	const newPopup = popupTemplate.cloneNode(true);
-	const name = newPopup.querySelector('.popup__container-name');
-	const about = newPopup.querySelector('.popup__container-about');
-
-	newPopup.querySelector('.popup__container-title').textContent = 'New Place';
-	name.placeholder = 'Title';
-	about.placeholder = 'Image URL';
-	const closeButton = newPopup.querySelector('.popup__close');
-	const saveButton = newPopup.querySelector('.popup__container-save');
-
-	closeButton.addEventListener('click', () => {
-		const targetPopup = closeButton.closest('.popup');
-		targetPopup.classList.add('fade-out');
-		window.setTimeout(() => {
-			targetPopup.remove();
-		}, 450);
-	})
-
-	saveButton.addEventListener('click', (e) => {
-		const targetPopup = saveButton.closest('.popup');
-		const popupName = targetPopup.querySelector('.popup__container-name');
-		const popupAbout = targetPopup.querySelector('.popup__container-about');
-		e.preventDefault();
-		addElement(popupName.value, popupAbout.value);
-		targetPopup.classList.add('fade-out');
-		window.setTimeout(() => {
-			targetPopup.remove();
-		}, 450);
-	});
-
-	newPopup.querySelector('.popup').classList.add('fade-in');
-	pageContainer.append(newPopup);
-}
-
-editButton.addEventListener('click', () => addEditPopup());
-
-newButton.addEventListener('click', () => addNewPopup())
-
+addEditPopup();
+addNewPopup();
 initialCards.forEach((card) => {
 	addElement(card.name, card.link);
 })
+
+editButton.addEventListener('click', () => document.querySelector('.popup-edit').classList.toggle('popup_opened'));
+newButton.addEventListener('click', () => document.querySelector('.popup-new').classList.toggle('popup_opened'));
+pictureClose.addEventListener('click', () => picture.classList.toggle('picture_active'));
+
 
