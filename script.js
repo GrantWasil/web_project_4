@@ -90,17 +90,17 @@ const addPicture = (nameValue, linkValue) => {
 	pageContainer.append(newPicture);
 }
 
-const addPopup = (titleValue, namePlaceholder, aboutPlaceholder, saveFunction, defaultName="", defaultAbout="") => {
+const addEditPopup = () => {
 	const popupTemplate = document.querySelector('#popup').content;
 	const newPopup = popupTemplate.cloneNode(true);
 	const name = newPopup.querySelector('.popup__container-name');
 	const about = newPopup.querySelector('.popup__container-about');
 
-	newPopup.querySelector('.popup__container-title').textContent = titleValue;
-	name.placeholder = namePlaceholder;
-	name.value = defaultName;
-	about.placeholder = aboutPlaceholder;
-	about.value = defaultAbout;
+	newPopup.querySelector('.popup__container-title').textContent = 'Edit Profile';
+	name.placeholder = 'Name';
+	name.value = profileName.textContent;
+	about.placeholder = 'About Me';
+	about.value = profileInfo.textContent;
 	const closeButton = newPopup.querySelector('.popup__close');
 	const saveButton = newPopup.querySelector('.popup__container-save');
 
@@ -117,7 +117,7 @@ const addPopup = (titleValue, namePlaceholder, aboutPlaceholder, saveFunction, d
 		const popupName = targetPopup.querySelector('.popup__container-name');
 		const popupAbout = targetPopup.querySelector('.popup__container-about');
 		e.preventDefault();
-		saveFunction(popupName.value, popupAbout.value);
+		updateProfile(popupName.value, popupAbout.value);
 		targetPopup.classList.add('fade-out');
 		window.setTimeout(() => {
 			targetPopup.remove();
@@ -128,13 +128,45 @@ const addPopup = (titleValue, namePlaceholder, aboutPlaceholder, saveFunction, d
 	pageContainer.append(newPopup);
 }
 
-editButton.addEventListener('click', () => {
-	addPopup('Edit Profile', 'Name', 'About Me', updateProfile, profileName.textContent, profileInfo.textContent);
-});
+const addNewPopup = (namePlaceholder, aboutPlaceholder) => {
+	const popupTemplate = document.querySelector('#popup').content;
+	const newPopup = popupTemplate.cloneNode(true);
+	const name = newPopup.querySelector('.popup__container-name');
+	const about = newPopup.querySelector('.popup__container-about');
 
-newButton.addEventListener('click', () => {
-	addPopup('New Place', 'Title', 'Image URL', addElement);
-})
+	newPopup.querySelector('.popup__container-title').textContent = 'New Place';
+	name.placeholder = 'Title';
+	about.placeholder = 'Image URL';
+	const closeButton = newPopup.querySelector('.popup__close');
+	const saveButton = newPopup.querySelector('.popup__container-save');
+
+	closeButton.addEventListener('click', () => {
+		const targetPopup = closeButton.closest('.popup');
+		targetPopup.classList.add('fade-out');
+		window.setTimeout(() => {
+			targetPopup.remove();
+		}, 450);
+	})
+
+	saveButton.addEventListener('click', (e) => {
+		const targetPopup = saveButton.closest('.popup');
+		const popupName = targetPopup.querySelector('.popup__container-name');
+		const popupAbout = targetPopup.querySelector('.popup__container-about');
+		e.preventDefault();
+		addElement(popupName.value, popupAbout.value);
+		targetPopup.classList.add('fade-out');
+		window.setTimeout(() => {
+			targetPopup.remove();
+		}, 450);
+	});
+
+	newPopup.querySelector('.popup').classList.add('fade-in');
+	pageContainer.append(newPopup);
+}
+
+editButton.addEventListener('click', () => addEditPopup());
+
+newButton.addEventListener('click', () => addNewPopup())
 
 initialCards.forEach((card) => {
 	addElement(card.name, card.link);
