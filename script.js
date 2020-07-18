@@ -4,13 +4,19 @@ const newButton = profile.querySelector('.btn-new');
 const profileName = profile.querySelector('.profile__info-name');
 const profileInfo = profile.querySelector('.profile__info-title');
 const editPopup = document.querySelector('.popup-edit');
-const newPopup = document.querySelector('.popup-new');
+const editName = editPopup.querySelector('.popup__container-name');
+const editAbout = editPopup.querySelector('.popup__container-about');
 const editClose = editPopup.querySelector('.popup__close');
+const editForm = editPopup.querySelector('.popup__form');
+const newPopup = document.querySelector('.popup-new');
+const newName = document.querySelector('.popup__container-name');
+const newAbout = document.querySelector('popup__container-about');
 const newClose = newPopup.querySelector('.popup__close');
-const editSave = editPopup.querySelector('.popup__container-save');
-const newSave = newPopup.querySelector('.popup__container-save');
+const newForm = newPopup.querySelector('.popup__form');
 const elementsContainer = document.querySelector('.elements');
 const picture = document.querySelector('.picture');
+const pictureTitle = picture.querySelector('.picture__container-title');
+const pictureUrl = picture.querySelector('.picture__container-image');
 const pictureClose = document.querySelector('.picture__container-close');
 const pageContainer = document.querySelector('.page');
 const initialCards = [
@@ -42,8 +48,8 @@ const initialCards = [
 
 const updateProfile = (evt) => {
 	evt.preventDefault();
-	const popupName = editPopup.querySelector('.popup__container-name').value;
-	const popupAbout = editPopup.querySelector('.popup__container-about').value;
+	const popupName = editName.value;
+	const popupAbout = editAbout.value;
 	profileName.textContent = popupName; 
 	profileInfo.textContent = popupAbout;
 	editPopup.classList.toggle('popup_opened');
@@ -55,6 +61,7 @@ const addElement = (nameValue, linkValue) => {
 	const image = newElement.querySelector('.element__image'); 
 
 	image.src = linkValue;
+	image.alt = `Image of ${nameValue}`;
 	newElement.querySelector('.element__info-name').textContent = nameValue;
 	const likeButton = newElement.querySelector('.element__info-like');
 	const trashButton = newElement.querySelector('.element__delete');
@@ -72,36 +79,37 @@ const addElement = (nameValue, linkValue) => {
 
 	image.addEventListener('click', () => {
 		editPicture(nameValue, linkValue);
-		document.querySelector('.picture').classList.toggle('picture_active');
+		picture.classList.toggle('picture_active');
 	})
 
-	newElement.querySelector('.element').classList.add('fade-in')
 	elementsContainer.append(newElement);
 }
 
 const editPicture = (nameValue, linkValue) => {
-	const pictureTitle = document.querySelector('.picture__container-title');
-	const pictureUrl = document.querySelector('.picture__container-image');
-
 	pictureTitle.textContent = nameValue;
 	pictureUrl.src= linkValue;
+	pictureUrl.alt = `Photo of ${nameValue}`;
 }
 
-initialCards.forEach((card) => {
-	addElement(card.name, card.link);
-})
+for(const {name, link} of initialCards){
+	addElement(name, link);
+}
 
-editButton.addEventListener('click', () => editPopup.classList.toggle('popup_opened'));
-editClose.addEventListener('click', () => editPopup.classList.toggle('popup_opened'));
-editSave.addEventListener('click', (e) => {
+const togglePopup = (popup) => {
+	popup.classList.toggle('popup_opened');
+}
+
+editButton.addEventListener('click', () => togglePopup(editPopup));
+editClose.addEventListener('click', () => togglePopup(editPopup));
+editForm.addEventListener('submit', (e) => {
 	updateProfile(e);
 });
 
-newButton.addEventListener('click', () => newPopup.classList.toggle('popup_opened'));
-newClose.addEventListener('click', () => newPopup.classList.toggle('popup_opened'));
-newSave.addEventListener('click', (e) => {
-	const newNameValue = newPopup.querySelector('.popup__container-name').value;
-	const newLinkValue = newPopup.querySelector('.popup__container-about').value;
+newButton.addEventListener('click', () => togglePopup(newPopup));
+newClose.addEventListener('click', () => togglePopup(newPopup));
+newForm.addEventListener('submit', (e) => {
+	const newNameValue = newName.value;
+	const newLinkValue = newAbout.value;
 	e.preventDefault();
 	addElement(newNameValue, newLinkValue);
 	newPopup.classList.toggle('popup_opened');
