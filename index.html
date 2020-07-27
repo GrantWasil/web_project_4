@@ -42,11 +42,15 @@
           <div class="popup__overlay"></div>
           <div class="popup__container">
             <h3 class="popup__container-title">New Place</h3>
-            <form class="popup__form">
-              <input class="popup__container-name" placeholder="Title" type="text" name="name">
-              <input class="popup__container-about" placeholder="Image URL" type="text" name="about">
-              <button class="popup__container-save">Save</button>
-              <button class="popup__close" aria-label="Close" type="reset"></button>
+            <form class="popup__form" novalidate>
+              <fieldset class="popup__field">
+                <input class="popup__container-name popup__input" id="name-input" placeholder="Title" type="text" name="name" minlength="2" maxlength="30" required>
+                <span class="popup__input-error" id="name-input-error"></span>
+                <input class="popup__container-about popup__input" id="about-input" placeholder="Image URL" type="text" name="about" type="URL" required>
+                <span class="popup__input-error" id="about-input-error"></span>
+                <button class="popup__container-save">Save</button> 
+                <button class="popup__close" aria-label="Close" type="reset"></button>
+              </fieldset>
             </form>
           </div>
         </section>
@@ -55,11 +59,15 @@
           <div class="popup__overlay"></div>
           <div class="popup__container">
             <h3 class="popup__container-title">Edit Profile</h3>
-            <form class="popup__form">
-              <input class="popup__container-name" placeholder="Name" type="text" name="name">
-              <input class="popup__container-about" placeholder="About me" type="text" name="about">
-              <button class="popup__container-save">Save</button>
-              <button class="popup__close" aria-label="Close" type="reset"></button>
+            <form class="popup__form" novalidate>
+              <fieldset class="popup__field">
+                <input class="popup__container-name popup__input" id="newName-input" placeholder="Name" type="text" name="name" minlength="2" maxlength="40" required>
+                <span class="popup__input-error" id="newName-input-error"></span>
+                <input class="popup__container-about popup__input" id="newAbout-input" placeholder="About me" type="text" name="about" minlength="2" maxlength="200" required>
+                <span class="popup__input-error" id="newAbout-input-error"></span>
+                <button class="popup__container-save">Save</button>
+                <button class="popup__close" aria-label="Close" type="reset"></button>
+              </fieldset>
             </form>
           </div>
         </section>

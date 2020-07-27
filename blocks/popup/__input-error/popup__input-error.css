@@ -1,0 +1,10 @@
+@import url(./_active/popup__input-error_active.css);
+
+.popup__input-error {
+	position: sticky;
+	display: inline-block;
+	margin: 0 36px;
+	width: calc(100% - 72px);
+	padding-top: 5px;
+	z-index: 5;
+}
