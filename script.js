@@ -8,11 +8,13 @@ const editName = editPopup.querySelector('.popup__container-name');
 const editAbout = editPopup.querySelector('.popup__container-about');
 const editClose = editPopup.querySelector('.popup__close');
 const editForm = editPopup.querySelector('.popup__form');
+const editOverlay = editPopup.querySelector('.popup__overlay');
 const newPopup = document.querySelector('.popup-new');
 const newName = document.querySelector('.popup__container-name');
 const newAbout = document.querySelector('popup__container-about');
 const newClose = newPopup.querySelector('.popup__close');
 const newForm = newPopup.querySelector('.popup__form');
+const newOverlay = newPopup.querySelector('.popup__overlay');
 const elementsContainer = document.querySelector('.elements');
 const picture = document.querySelector('.picture');
 const pictureTitle = picture.querySelector('.picture__container-title');
@@ -128,8 +130,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement) => {
 	if (hasInvalidInput(inputList)) {
 		buttonElement.classList.add("popup__container-save_inactive");
+		buttonElement.disabled = true;
 	} else {
 		buttonElement.classList.remove("popup__container-save_inactive");
+		buttonElement.disabled = false;
 	}
 }
 
@@ -160,12 +164,19 @@ const enableValidation = () => {
 
 editButton.addEventListener('click', () => togglePopup(editPopup));
 editClose.addEventListener('click', () => togglePopup(editPopup));
+editOverlay.addEventListener('click', () => togglePopup(editPopup));
 editForm.addEventListener('submit', (e) => {
 	updateProfile(e);
 });
+editPopup.addEventListener('keydown', (e) => {
+	if (e.key === "Escape") {
+		togglePopup(editPopup)
+	}
+})
 
 newButton.addEventListener('click', () => togglePopup(newPopup));
 newClose.addEventListener('click', () => togglePopup(newPopup));
+newOverlay.addEventListener('click', () => togglePopup(newPopup));
 newForm.addEventListener('submit', (e) => {
 	const newNameValue = newName.value;
 	const newLinkValue = newAbout.value;
@@ -173,6 +184,13 @@ newForm.addEventListener('submit', (e) => {
 	addElement(newNameValue, newLinkValue);
 	newPopup.classList.toggle('popup_opened');
 });
+
+newPopup.addEventListener('keydown', (e) => {
+	console.log("Test");
+	if (e.key === "Escape") {
+		togglePopup(newPopup)
+	}
+})
 
 pictureClose.addEventListener('click', () => picture.classList.toggle('picture_active'));
 

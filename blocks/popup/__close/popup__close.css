@@ -1,7 +1,7 @@
 .popup__close {
 	z-index: 3;
 	position: relative;
-	left: 425px;
+	left: 100%;
 	bottom: 350px;
 	background-image: url(../../../images/close.svg);
 	width: 41px;

@@ -3,10 +3,12 @@
 @import url(./__container-about/popup__container-about.css);
 @import url(./__container-name/popup__container-name.css);
 @import url(./__container-save/popup__container-save.css);
+@import url(./__container-save/_inactive/popup__container-save_inactive.css);
 @import url(./__container-title/popup__container-title.css);
 @import url(./__close/popup__close.css);
 @import url(./__field/popup__field.css);
 @import url(./__input-error/popup__input-error.css);
+@import url(./__input-error/_active/popup__input-error_active.css);
 
 .popup {
 	position: fixed; 

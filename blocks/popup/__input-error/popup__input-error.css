@@ -1,10 +1,9 @@
-@import url(./_active/popup__input-error_active.css);
-
 .popup__input-error {
-	position: sticky;
 	display: inline-block;
 	margin: 0 36px;
 	width: calc(100% - 72px);
-	padding-top: 5px;
+	padding: 5px 0 13px;
 	z-index: 5;
+	min-height: 17px;
+	border-top: 1px solid rgba(0, 0, 0, .7);
 }
