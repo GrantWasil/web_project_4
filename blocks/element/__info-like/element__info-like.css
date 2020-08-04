@@ -1,5 +1,3 @@
-@import url(./_active/element__info-like_active.css);
-
 .element__info-like {
 	background-image: url(../../../images/like.svg);
 	border: none;

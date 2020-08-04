@@ -21,6 +21,9 @@ const pictureTitle = picture.querySelector('.picture__container-title');
 const pictureUrl = picture.querySelector('.picture__container-image');
 const pictureClose = document.querySelector('.picture__container-close');
 const pageContainer = document.querySelector('.page');
+const elementTemplate = document.querySelector('#element').content;
+
+// I don't think we've learned how to pull out initialCards into a seperate file yet. All of the work we've done so far is with one JS file.
 const initialCards = [
     {
         name: "Yosemite Valley",
@@ -48,17 +51,21 @@ const initialCards = [
     }
 ];
 
+const togglePopup = (popup) => {
+	popup.classList.toggle('popup_opened');
+	document.removeEventListener('keydown', handleEscape);
+}
+
 const updateProfile = (evt) => {
 	evt.preventDefault();
 	const popupName = editName.value;
 	const popupAbout = editAbout.value;
 	profileName.textContent = popupName; 
 	profileInfo.textContent = popupAbout;
-	editPopup.classList.toggle('popup_opened');
+	togglePopup(editPopup);
 }
 
 const addElement = (nameValue, linkValue) => {
-	const elementTemplate = document.querySelector('#element').content;
 	const newElement = elementTemplate.cloneNode(true);
 	const image = newElement.querySelector('.element__image'); 
 
@@ -71,7 +78,6 @@ const addElement = (nameValue, linkValue) => {
 
 	likeButton.addEventListener('click', (e) => {
 		e.target.classList.toggle('element__info-like_active');
-		e.target.classList.toggle('element__info-like');
 	})
 
 	trashButton.addEventListener('click', () => {
@@ -97,12 +103,14 @@ for(const {name, link} of initialCards){
 	addElement(name, link);
 }
 
-const togglePopup = (popup) => {
-	popup.classList.toggle('popup_opened');
-}
-
+// I'm confused about why you're asking me to move things to validate.js. It isn't mentioned in the Project 6 description nor the checklist. 
+// We haven't learned how to do multiple file JS yet. I'm familier with exporting functions so I can do it how I've been taught before, 
+// But I think you're asking me of requirements for a future project. 
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
+  // You talked about passing the classList to the function, but we didnt' learn that either in our lessons. I just wanted to check to ensure that 
+  // I'm supposed to do that for project 6. If I am, I'll get it fixed tonight! Thank you again for your help!
   inputElement.classList.add("popup__input_type_error");
   errorElement.textContent = errorMessage;
   errorElement.classList.add("popup__input-error_active");
@@ -162,21 +170,33 @@ const enableValidation = () => {
 	});
 }
 
-editButton.addEventListener('click', () => togglePopup(editPopup));
-editClose.addEventListener('click', () => togglePopup(editPopup));
-editOverlay.addEventListener('click', () => togglePopup(editPopup));
+
+
+// Thanks for your feedback regarding my "Escape" function. I've completly refactored this section and now my handlePopup function is much cleaner
+const handleEscape = (evt) => {
+	if (evt.key === "Escape") {
+		const currentPopup = document.querySelector('.popup_opened')
+		togglePopup(currentPopup);
+	}
+};
+
+const handlePopup = (buttonElement, popupElement) => {
+	buttonElement.addEventListener('click', () => {
+		togglePopup(popupElement);
+		document.addEventListener('keydown', handleEscape);
+	})
+}
+
+handlePopup(editButton, editPopup);
+handlePopup(editClose, editPopup);
+handlePopup(editOverlay, editPopup);
 editForm.addEventListener('submit', (e) => {
 	updateProfile(e);
 });
-editPopup.addEventListener('keydown', (e) => {
-	if (e.key === "Escape") {
-		togglePopup(editPopup)
-	}
-})
 
-newButton.addEventListener('click', () => togglePopup(newPopup));
-newClose.addEventListener('click', () => togglePopup(newPopup));
-newOverlay.addEventListener('click', () => togglePopup(newPopup));
+handlePopup(newButton, newPopup);
+handlePopup(newClose, newPopup);
+handlePopup(newOverlay, newPopup);
 newForm.addEventListener('submit', (e) => {
 	const newNameValue = newName.value;
 	const newLinkValue = newAbout.value;
@@ -185,12 +205,6 @@ newForm.addEventListener('submit', (e) => {
 	newPopup.classList.toggle('popup_opened');
 });
 
-newPopup.addEventListener('keydown', (e) => {
-	console.log("Test");
-	if (e.key === "Escape") {
-		togglePopup(newPopup)
-	}
-})
 
 pictureClose.addEventListener('click', () => picture.classList.toggle('picture_active'));
 

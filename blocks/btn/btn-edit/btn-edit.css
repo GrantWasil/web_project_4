@@ -1,7 +1,7 @@
 .btn-edit {
 	border: 1px solid #fff;
 	box-sizing: border-box;
-	width: 23px;
+	min-width: 23px;
 	height: 23px;
 	padding: 0;
 	margin: 40.75px 0 0 24px;
