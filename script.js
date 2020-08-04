@@ -11,7 +11,7 @@ const editForm = editPopup.querySelector('.popup__form');
 const editOverlay = editPopup.querySelector('.popup__overlay');
 const newPopup = document.querySelector('.popup-new');
 const newName = document.querySelector('.popup__container-name');
-const newAbout = document.querySelector('popup__container-about');
+const newAbout = document.querySelector('.popup__container-about');
 const newClose = newPopup.querySelector('.popup__close');
 const newForm = newPopup.querySelector('.popup__form');
 const newOverlay = newPopup.querySelector('.popup__overlay');
@@ -199,6 +199,7 @@ handlePopup(newClose, newPopup);
 handlePopup(newOverlay, newPopup);
 newForm.addEventListener('submit', (e) => {
 	const newNameValue = newName.value;
+	// Facepalm... I forgot a period before my class selector! Thansk for pointing that out.
 	const newLinkValue = newAbout.value;
 	e.preventDefault();
 	addElement(newNameValue, newLinkValue);
