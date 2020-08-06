@@ -11,6 +11,12 @@
 	max-height: 50px;
 }
 
+@media (max-width: 850px) {
+	.profile__info-name {
+		font-size: 30px;
+	}
+}
+
 @media (max-width: 450px) {
 	.profile__info-name {
 		font-size: 22px;

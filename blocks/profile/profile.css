@@ -6,6 +6,7 @@
 .profile {
 	padding-top: 36.25px;
 	display: flex;
+	flex-wrap: wrap;
 }
 
 @media (max-width: 450px) {
