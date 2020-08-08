@@ -33,6 +33,7 @@ const picture = document.querySelector('.picture');
 const pictureTitle = picture.querySelector('.picture__container-title');
 const pictureUrl = picture.querySelector('.picture__container-image');
 const pictureClose = document.querySelector('.picture__container-close');
+const pictureOverlay = picture.querySelector('.popup__overlay');
 const pageContainer = document.querySelector('.page');
 const elementTemplate = document.querySelector('#element').content;
 
@@ -103,10 +104,10 @@ const addElement = (nameValue, linkValue) => {
 
 	image.addEventListener('click', () => {
 		editPicture(nameValue, linkValue);
-		picture.classList.toggle('picture_active');
+		togglePopup(picture);
 	})
 
-	elementsContainer.append(newElement);
+	elementsContainer.prepend(newElement);
 }
 
 const editPicture = (nameValue, linkValue) => {
@@ -122,8 +123,6 @@ const handleEscape = (evt) => {
 	}
 };
 
-// I saw that you said that I no longer need this function, but this is how I currently prepare all of my buttons be clicked. I did 
-// remove the addEventListener('keydown', handleEscape) though because I implemented it above as you suggested
 const handlePopup = (buttonElement, popupElement) => {
 	buttonElement.addEventListener('click', () => {
 		togglePopup(popupElement);
@@ -134,16 +133,24 @@ for(const {name, link} of initialCards){
 	addElement(name, link);
 }
 
-handlePopup(editButton, editPopup);
 handlePopup(editClose, editPopup);
 handlePopup(editOverlay, editPopup);
+editButton.addEventListener('click', () => {
+    editName.value = profileName.textContent;
+    editAbout.value = profileInfo.textContent;
+    togglePopup(editPopup);
+})
 editForm.addEventListener('submit', (e) => {
 	updateProfile(e);
 });
 
-handlePopup(newButton, newPopup);
 handlePopup(newClose, newPopup);
 handlePopup(newOverlay, newPopup);
+newButton.addEventListener('click', () => {
+    newName.value = '';
+    newAbout.value = '';
+    togglePopup(newPopup);
+})
 newForm.addEventListener('submit', (e) => {
 	const newNameValue = newName.value;
 	const newLinkValue = newAbout.value;
@@ -151,8 +158,9 @@ newForm.addEventListener('submit', (e) => {
 	togglePopup(newPopup);
 });
 
+handlePopup(pictureClose, picture);
+handlePopup(pictureOverlay, picture);
 
-pictureClose.addEventListener('click', () => picture.classList.toggle('picture_active'));
 
 
 

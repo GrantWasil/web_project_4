@@ -8,6 +8,7 @@
 	width: 20.76px;
 	height: 19px;
 	align-self: center;
+	cursor: pointer;
 }
 
 .element__info-like:hover {

@@ -5,4 +5,5 @@
 	background: black;
 	position: absolute;
 	z-index: 3;
+	cursor: pointer;
 }
