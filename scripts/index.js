@@ -28,6 +28,7 @@ const newAbout = document.querySelector('.popup__container-about');
 const newClose = newPopup.querySelector('.popup__close');
 const newForm = newPopup.querySelector('.popup__form');
 const newOverlay = newPopup.querySelector('.popup__overlay');
+const newSubmit = newPopup.querySelector('.popup__container-save');
 const elementsContainer = document.querySelector('.elements');
 const picture = document.querySelector('.picture');
 const pictureTitle = picture.querySelector('.picture__container-title');
@@ -75,11 +76,13 @@ const togglePopup = (popup) => {
 
 const updateProfile = (evt) => {
 	evt.preventDefault();
-	const popupName = editName.value;
-	const popupAbout = editAbout.value;
-	profileName.textContent = popupName; 
-	profileInfo.textContent = popupAbout;
-	togglePopup(editPopup);
+	if (editName.value !== '' && editAbout.value !== '') {
+		const popupName = editName.value;
+		const popupAbout = editAbout.value;
+		profileName.textContent = popupName; 
+		profileInfo.textContent = popupAbout;
+		togglePopup(editPopup);
+	}
 }
 
 const addElement = (nameValue, linkValue) => {
@@ -149,13 +152,16 @@ handlePopup(newOverlay, newPopup);
 newButton.addEventListener('click', () => {
     newName.value = '';
     newAbout.value = '';
+    newSubmit.classList.add('popup__container-save_inactive');
     togglePopup(newPopup);
 })
 newForm.addEventListener('submit', (e) => {
-	const newNameValue = newName.value;
-	const newLinkValue = newAbout.value;
-	addElement(newNameValue, newLinkValue);
-	togglePopup(newPopup);
+	if (newName.value != '' && newAbout.value != '') {
+		const newNameValue = newName.value;
+		const newLinkValue = newAbout.value;
+		addElement(newNameValue, newLinkValue);
+		togglePopup(newPopup);
+	}
 });
 
 handlePopup(pictureClose, picture);
