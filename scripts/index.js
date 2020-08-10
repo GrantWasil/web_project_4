@@ -1,16 +1,3 @@
-/**
-Okay, some pretty big changes here. First off, I want to apologise for not originally accepting your feedback.
-For some reason, I thought that you were wanting us to declare classes and export them, and I was just confused.
-
-I super appreciate your help, and I think that not only is my validation.js file what you were looking for, but 
-it's also helping me become a stronger dev.
-
-Again, I'm very sorry for the confusion. 
-
-Grant
-**/
-
-
 const profile = document.querySelector('.profile');
 const editButton = profile.querySelector('.btn-edit');
 const newButton = profile.querySelector('.btn-new');
@@ -76,7 +63,7 @@ const togglePopup = (popup) => {
 
 const updateProfile = (evt) => {
 	evt.preventDefault();
-	if (editName.value !== '' && editAbout.value !== '') {
+	if (editName.validity.valid && editAbout.validity.valid) {
 		const popupName = editName.value;
 		const popupAbout = editAbout.value;
 		profileName.textContent = popupName; 
@@ -156,7 +143,7 @@ newButton.addEventListener('click', () => {
     togglePopup(newPopup);
 })
 newForm.addEventListener('submit', (e) => {
-	if (newName.value != '' && newAbout.value != '') {
+	if (newName.validity.valid && newAbout.validity.valid) {
 		const newNameValue = newName.value;
 		const newLinkValue = newAbout.value;
 		addElement(newNameValue, newLinkValue);
