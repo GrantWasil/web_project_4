@@ -1,3 +1,6 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const profile = document.querySelector('.profile');
 const editButton = profile.querySelector('.btn-edit');
 const newButton = profile.querySelector('.btn-new');
@@ -18,12 +21,9 @@ const newOverlay = newPopup.querySelector('.popup__overlay');
 const newSubmit = newPopup.querySelector('.popup__container-save');
 const elementsContainer = document.querySelector('.elements');
 const picture = document.querySelector('.picture');
-const pictureTitle = picture.querySelector('.picture__container-title');
-const pictureUrl = picture.querySelector('.picture__container-image');
 const pictureClose = document.querySelector('.picture__container-close');
 const pictureOverlay = picture.querySelector('.popup__overlay');
-const pageContainer = document.querySelector('.page');
-const elementTemplate = document.querySelector('#element').content;
+
 
 const initialCards = [
     {
@@ -52,52 +52,6 @@ const initialCards = [
     }
 ];
 
-class Card {
-	constructor(data, templateElement) {
-		this._text = data.name;
-		this._link = data.link;
-		this._templateElement = templateElement;
-	}
-
-	_getTemplate() {
-		const cardElement = document
-			.querySelector(this._templateElement)
-			.content
-			.cloneNode(true);
-		return cardElement;
-	}
-
-	generateCard() {
-		this._element = this._getTemplate();
-		this._setEventListeners();
-		this._element.querySelector('.element__image').src = this._link;
-		this._element.querySelector('.element__image').alt = `Image of ${this._text}`;
-		this._element.querySelector('.element__info-name').textContent = this._text;
-
-		return this._element;
-	}
-
-	_handleOpenPopup() {
-		editPicture(this._text, this._link);
-		togglePopup(picture);
-	}
-
-	_setEventListeners() {
-		this._element.querySelector('.element__image').addEventListener('click', () => {
-			this._handleOpenPopup();
-		})
-
-		this._element.querySelector('.element__info-like').addEventListener('click', (e) => {
-			e.target.classList.toggle('element__info-like_active');
-		})
-
-		this._element.querySelector('.element__delete').addEventListener('click', (e) => {
-			const targetElement = e.target.closest('.element');
-			targetElement.remove();
-		})
-	}
-
-}
 
 const togglePopup = (popup) => {
     popup.classList.toggle('popup_opened'); 
@@ -117,12 +71,6 @@ const updateProfile = (evt) => {
 		profileInfo.textContent = popupAbout;
 		togglePopup(editPopup);
 	}
-}
-
-const editPicture = (nameValue, linkValue) => {
-	pictureTitle.textContent = nameValue;
-	pictureUrl.src= linkValue;
-	pictureUrl.alt = `Photo of ${nameValue}`;
 }
 
 const handleEscape = (evt) => {
