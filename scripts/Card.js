@@ -1,8 +1,9 @@
 class Card {
-	constructor(data, templateElement) {
+	constructor(data, templateElement, togglePopup) {
 		this._text = data.name;
 		this._link = data.link;
 		this._templateElement = templateElement;
+		this._togglePopup = togglePopup;
 	}
 
 	_getTemplate() {
@@ -27,7 +28,7 @@ class Card {
         document.querySelector('.picture__container-title').textContent = this._text;
         document.querySelector('.picture__container-image').src = this._link;
         document.querySelector('.picture__container-image').alt = `Photo of ${this._text}`
-		togglePopup(picture);
+		this._togglePopup(document.querySelector('.picture'));
 	}
 
 	_setEventListeners() {

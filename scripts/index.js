@@ -87,7 +87,7 @@ const handlePopup = (buttonElement, popupElement) => {
 }
 
 initialCards.forEach((item) => {
-	const card = new Card(item, '#element');
+	const card = new Card(item, '#element', togglePopup);
 	const cardElement = card.generateCard();
 
 	elementsContainer.prepend(cardElement);
