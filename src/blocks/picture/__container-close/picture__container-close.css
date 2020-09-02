@@ -1,21 +1,14 @@
-.popup__close {
+.picture__container-close {
 	z-index: 3;
 	position: relative;
-	left: 100%;
-	bottom: 350px;
 	background-image: url(../../../images/close.svg);
+	left: 100%;
+	bottom: 0px;
 	width: 41px;
-	height: 41px;
+	min-height: 41px;
 	border: none;
 	background-color: transparent;
 	background-size: auto;
 	background-position: center;
 	cursor: pointer;
-}
-
-@media (max-width: 450px) {
-	.popup__close {
-		left: 90%;
-		bottom: 360px;
-	}
 }

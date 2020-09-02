@@ -1,8 +1,9 @@
-.picture__container-close {
+.popup__close {
 	z-index: 3;
 	position: relative;
 	background-image: url(../../../images/close.svg);
 	left: 100%;
+	bottom: 350px;
 	width: 41px;
 	min-height: 41px;
 	border: none;
@@ -10,4 +11,11 @@
 	background-size: auto;
 	background-position: center;
 	cursor: pointer;
+}
+
+@media (max-width: 450px) {
+	.popup__close {
+		left: 90%;
+		bottom: 360px;
+	}
 }

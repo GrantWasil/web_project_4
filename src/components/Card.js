@@ -1,9 +1,10 @@
-class Card {
-	constructor(data, templateElement, togglePopup) {
-		this._text = data.name;
+import PopupWithImage from "./PopupWithImage";
+
+export default class Card {
+	constructor(data, templateElement) {
+		this._text = data.text;
 		this._link = data.link;
 		this._templateElement = templateElement;
-		this._togglePopup = togglePopup;
 	}
 
 	_getTemplate() {
@@ -25,10 +26,10 @@ class Card {
 	}
 
 	_handleOpenPopup() {
-        document.querySelector('.picture__container-title').textContent = this._text;
-        document.querySelector('.picture__container-image').src = this._link;
-        document.querySelector('.picture__container-image').alt = `Photo of ${this._text}`
-		this._togglePopup(document.querySelector('.picture'));
+		const popup = new PopupWithImage(this._text, this._link, '.picture');
+		popup.setEventListeners();
+		popup.open();
+		
 	}
 
 	_setEventListeners() {
@@ -44,8 +45,7 @@ class Card {
 			const targetElement = e.target.closest('.element');
 			targetElement.remove();
 		})
+		
 	}
 
 }
-
-export default Card;
