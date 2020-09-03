@@ -8,11 +8,10 @@ export default class PopupWithImage extends Popup {
     }
 
     open(){
-        const popupElement = this._getElement();
         document.addEventListener('keydown', this._handleEscapeClose);
-        popupElement.querySelector('.picture__container-image').src = this._link;
-        popupElement.querySelector('.picture__container-image').alt = `Image of ${this._text}`;
-        popupElement.querySelector('.picture__container-title').textContent = this._text;
-        popupElement.classList.add('popup_opened');
+        this._popupElement.querySelector('.picture__container-image').src = this._link;
+        this._popupElement.querySelector('.picture__container-image').alt = `Image of ${this._text}`;
+        this._popupElement.querySelector('.picture__container-title').textContent = this._text;
+        super.open()
     }
 }

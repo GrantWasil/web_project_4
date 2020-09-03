@@ -17,9 +17,11 @@ export default class Card {
 
 	generateCard() {
 		this._element = this._getTemplate();
+		this._cardElement = this._element.querySelector('.element');
+		const imageElement = this._element.querySelector('.element__image');
 		this._setEventListeners();
-		this._element.querySelector('.element__image').src = this._link;
-		this._element.querySelector('.element__image').alt = `Image of ${this._text}`;
+		imageElement.src = this._link;
+		imageElement.alt = `Image of ${this._text}`;
 		this._element.querySelector('.element__info-name').textContent = this._text;
 
 		return this._element;
@@ -41,9 +43,8 @@ export default class Card {
 			e.target.classList.toggle('element__info-like_active');
 		})
 
-		this._element.querySelector('.element__delete').addEventListener('click', (e) => {
-			const targetElement = e.target.closest('.element');
-			targetElement.remove();
+		this._element.querySelector('.element__delete').addEventListener('click', () => {
+			this._cardElement.remove();
 		})
 		
 	}

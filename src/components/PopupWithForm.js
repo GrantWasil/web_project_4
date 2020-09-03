@@ -11,19 +11,17 @@ export default class PopupWithForm extends Popup {
         this._formSelector = formSelector
     }
 
-    open() {
-        this._getElement()
-            .classList
-            .add('popup_opened');
-            
-        this._getElement()
+    open() { 
+        this._popupElement
             .querySelector('.popup__container-save')
             .classList
             .add('popup__container-save_inactive')
+
+        super.open()
     }
     
     _getInputValues() {
-        this._inputList = this._getElement().querySelectorAll('.popup__input');
+        this._inputList = this._popupElement.querySelectorAll('.popup__input');
         this._formValues = {};
         this._inputList.forEach((input) => {
             this._formValues[input.name] = input.value;
@@ -33,16 +31,16 @@ export default class PopupWithForm extends Popup {
     }
 
     _reset() {
-        this._inputList = this._getElement().querySelectorAll('.popup__input');
+        this._inputList = this._popupElement.querySelectorAll('.popup__input');
         this._inputList.forEach((input) => {
             input.value = '';
         })
     }
 
     setEventListeners() {
-        const closeButton = this._getElement().querySelector('.popup__close');
-        const formElement = this._getElement().querySelector('.popup__form');
-        const popupOverlay = this._getElement().querySelector(overlay);
+        const closeButton = this._popupElement.querySelector('.popup__close');
+        const formElement = this._popupElement.querySelector('.popup__form');
+        const popupOverlay = this._popupElement.querySelector(overlay);
         closeButton.addEventListener('click', () => {
             this.close();
         })

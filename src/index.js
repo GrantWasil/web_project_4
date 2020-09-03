@@ -3,16 +3,16 @@ import Card from "./components/Card";
 import FormValidator from "./components/FormValidator";
 import PopupWithForm from "./components/PopupWithForm.js";
 import Section from "./components/Section.js";
+import UserInfo from "./components/UserInfo.js";
 import {
     items,
     elementsContainer,
-    formButtons
+    formButtons,
+    profileNameText,
+    profileInfoText
 } from "./utils/constants.js"
 
-
-const profile = document.querySelector('.profile');
-const profileName = profile.querySelector('.profile__info-name');
-const profileInfo = profile.querySelector('.profile__info-title');
+const userProfile = new UserInfo({profileNameText, profileInfoText})
 
 const defaultCardList = new Section({
     data: items,
@@ -23,6 +23,11 @@ const defaultCardList = new Section({
     }
 }, elementsContainer);
 
+
+/** Could you help me a little bit with how I could refactor this code? I totally agree that
+ * it's messy and I don't like it. But I need to change the callback functions depending on 
+ * which form it is. I think I made all of the other changes you wanted! THANK YOU SO MUCH!
+*/
 formButtons.forEach((button) => {
     if (button.isNew) {
         document.querySelector(button.formClass).addEventListener('click', () => {
@@ -42,18 +47,11 @@ formButtons.forEach((button) => {
         document.querySelector(button.formClass).addEventListener('click', () => {
             const form = new PopupWithForm({
                 handleFormSubmit: (formData) => {
-                    profileName.textContent = formData.text;
-                    profileInfo.textContent = formData.about;
+                    userProfile.setProfile(formData)
                     form.close();
                 }
             }, '.popup-edit', 'popup__form')
             form.setEventListeners();
-            document
-                .querySelector('.popup-edit')
-                .querySelector('.popup__container-name').value = profileName.textContent
-            document
-                .querySelector('.popup-edit')
-                .querySelector('.popup__container-about').value = profileInfo.textContent
             form.open();
         })
     }

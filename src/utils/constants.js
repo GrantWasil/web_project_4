@@ -40,3 +40,9 @@ export const elementsContainer = '.elements';
 
 export const close = ".popup__close";
 export const overlay = ".popup__overlay";
+
+export const profile = document.querySelector('.profile');
+export const profileName = profile.querySelector('.profile__info-name')
+export const profileInfo = profile.querySelector('.profile__info-title')
+export const profileNameText = profile.querySelector('.profile__info-name').textContent;
+export const profileInfoText = profile.querySelector('.profile__info-title').textContent;
