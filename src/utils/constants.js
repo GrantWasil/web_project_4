@@ -25,16 +25,8 @@ export const items = [
     }
 ];
 
-export const formButtons = [
-    {
-        formClass: ".btn-new",
-        isNew: true
-    },
-    {
-        formClass: ".btn-edit",
-        isNew: false
-    }
-]
+export const newButton = document.querySelector('.btn-new');
+export const editButton = document.querySelector('.btn-edit');
 
 export const elementsContainer = '.elements';
 

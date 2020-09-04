@@ -7,12 +7,20 @@ import UserInfo from "./components/UserInfo.js";
 import {
     items,
     elementsContainer,
-    formButtons,
+    newButton,
+    editButton,
     profileNameText,
     profileInfoText
 } from "./utils/constants.js"
 
 const userProfile = new UserInfo({profileNameText, profileInfoText})
+
+/**
+ *  Semyon!! Thank you SO MUCH. I'm sorry that I asked you for help, I didn't realize that I 
+ *  couldn't do that anymore. This code looks much better, and I feel like I undestand how
+ *  to handle this in the future. Going to write about how helpful you were in slack right
+ *  now. Thank you so much
+ */
 
 const defaultCardList = new Section({
     data: items,
@@ -23,41 +31,33 @@ const defaultCardList = new Section({
     }
 }, elementsContainer);
 
-
-/** Could you help me a little bit with how I could refactor this code? I totally agree that
- * it's messy and I don't like it. But I need to change the callback functions depending on 
- * which form it is. I think I made all of the other changes you wanted! THANK YOU SO MUCH!
-*/
-formButtons.forEach((button) => {
-    if (button.isNew) {
-        document.querySelector(button.formClass).addEventListener('click', () => {
-            const form = new PopupWithForm({
-                handleFormSubmit: (formData) => {
-                    const card = new Card(formData, '#element');
-                    const cardElement = card.generateCard();
-                    defaultCardList.addItem(cardElement)
-                    form.close();
-                }
-            }, '.popup-new', '.popup__form')
-            form.setEventListeners();
-            form.open();
-        })
-        
-    } else {
-        document.querySelector(button.formClass).addEventListener('click', () => {
-            const form = new PopupWithForm({
-                handleFormSubmit: (formData) => {
-                    userProfile.setProfile(formData)
-                    form.close();
-                }
-            }, '.popup-edit', 'popup__form')
-            form.setEventListeners();
-            form.open();
-        })
+const newPopup = new PopupWithForm({
+    handleFormSubmit: (formData) => {
+        const card = new Card(formData, '#element');
+        const cardElement = card.generateCard();
+        defaultCardList.addItem(cardElement)
+        newPopup.close();
     }
+}, '.popup-new', '.popup__form')
+
+
+const editPopup = new PopupWithForm({
+    handleFormSubmit: (formData) => {
+        userProfile.setProfile(formData)
+        editPopup.close();
+    }
+}, '.popup-edit', 'popup__form')
+
+editPopup.setEventListeners();
+newPopup.setEventListeners();
+
+newButton.addEventListener('click', () => {
+    newPopup.open();
 })
 
-
+editButton.addEventListener('click', () => {
+    editPopup.open();
+})
 
 defaultCardList.renderItems();
 
