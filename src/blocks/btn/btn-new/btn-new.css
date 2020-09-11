@@ -10,6 +10,9 @@
 	cursor: pointer;
 }
 
+.btn-new:hover{
+	opacity: .5;
+}
 
 @media (max-width: 450px) {
 	.btn-new {

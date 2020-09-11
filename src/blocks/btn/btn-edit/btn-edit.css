@@ -11,6 +11,10 @@
 	cursor: pointer;
 }
 
+.btn-edit:hover{
+	opacity: .5;
+}
+
 @media (max-width: 450px) {
 	.btn-edit {
 		width: 18px;

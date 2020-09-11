@@ -12,5 +12,5 @@
 }
 
 .element__info-like:hover {
-	opacity: 50%;
+	opacity: .5;
 }

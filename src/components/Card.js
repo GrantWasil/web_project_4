@@ -1,9 +1,16 @@
 import PopupWithImage from "./PopupWithImage";
+import PopupWithForm from "./PopupWithForm.js";
+import {
+	authorization,
+	groupID
+} from "../utils/constants.js";
 
 export default class Card {
 	constructor(data, templateElement) {
-		this._text = data.text;
+		this._text = data.name;
 		this._link = data.link;
+		this._likes = data.likes || 0;
+		this._id = data._id;
 		this._templateElement = templateElement;
 	}
 
@@ -19,10 +26,12 @@ export default class Card {
 		this._element = this._getTemplate();
 		this._cardElement = this._element.querySelector('.element');
 		const imageElement = this._element.querySelector('.element__image');
+		const imageLikes = this._element.querySelector('.element__info-count');
 		this._setEventListeners();
 		imageElement.src = this._link;
 		imageElement.alt = `Image of ${this._text}`;
 		this._element.querySelector('.element__info-name').textContent = this._text;
+		imageLikes.textContent = this._likes.length;
 
 		return this._element;
 	}
@@ -35,16 +44,51 @@ export default class Card {
 	}
 
 	_setEventListeners() {
+		const imageLikes = this._element.querySelector('.element__info-count');
 		this._element.querySelector('.element__image').addEventListener('click', () => {
 			this._handleOpenPopup();
 		})
-
 		this._element.querySelector('.element__info-like').addEventListener('click', (e) => {
-			e.target.classList.toggle('element__info-like_active');
+			if (e.target.classList.contains('element__info-like_active')) {
+				e.target.classList.remove('element__info-like_active')
+				fetch(`https://around.nomoreparties.co/v1/${groupID}/cards/likes/${this._id}`, {
+					method: "DELETE",
+					headers: {
+						authorization
+					}
+				})
+				  .then(res => res.json())
+				  .then(data => imageLikes.textContent = data.likes.length)
+			} else {
+				e.target.classList.add('element__info-like_active')
+				fetch(`https://around.nomoreparties.co/v1/${groupID}/cards/likes/${this._id}`, {
+					method: "PUT",
+					headers: {
+						authorization
+					}
+				})
+				.then(res => res.json())
+				.then(data => imageLikes.textContent = data.likes.length)
+			}
+		
 		})
 
 		this._element.querySelector('.element__delete').addEventListener('click', () => {
-			this._cardElement.remove();
+			const target = this._cardElement;
+			const confirm = new PopupWithForm({
+				handleFormSubmit: () => {
+					target.remove();
+					confirm.close();
+					fetch(`https://around.nomoreparties.co/v1/${groupID}/cards/${this._id}`, {
+						method: "DELETE",
+						headers: {
+							authorization
+						}
+					})
+				}
+			}, '.popup-delete', '.popup__form')
+			confirm.setEventListeners();
+			confirm.open();
 		})
 		
 	}

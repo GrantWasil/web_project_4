@@ -1,0 +1,5 @@
+.delete__container {
+    width: calc(100% - 950px);
+    max-height: 272px;
+    min-width: 240px;
+}

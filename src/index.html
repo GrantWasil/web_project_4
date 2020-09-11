@@ -13,10 +13,10 @@
 
       <main>
         <section class="profile container">
-          <img class="profile__avatar" src="./images/avatar.png" alt="The profile picture of the user">
+          <img class="profile__avatar" alt="The profile picture of the user">
           <div class="profile__info">
-            <h1 class="profile__info-name">Jacques Cousteau</h1>
-            <p class="profile__info-title">Explorer</p>
+            <h1 class="profile__info-name"></h1>
+            <p class="profile__info-title"></p>
           </div>
           <button class="btn btn-edit" aria-label="Edit" type="button"></button>
           <button class="btn btn-new" aria-label="New" type="button"></button>
@@ -41,13 +41,37 @@
             <h3 class="popup__container-title">New Place</h3>
             <form class="popup__form" novalidate>
               <fieldset class="popup__field">
-                <input class="popup__container-name popup__input" id="name-input" placeholder="Title" type="text" name="text" minlength="2" maxlength="30" required>
+                <input class="popup__container-name popup__input" id="name-input" placeholder="Title" type="text" name="name" minlength="2" maxlength="30" required>
                 <span class="popup__input-error" id="name-input-error"></span>
                 <input class="popup__container-about popup__input" id="about-input" placeholder="Image URL" name="link" type="URL" required>
                 <span class="popup__input-error" id="about-input-error"></span>
                 <button class="popup__container-save" type="submit">Save</button> 
                 <button class="popup__close" aria-label="Close" type="reset"></button>
               </fieldset>
+            </form>
+          </div>
+        </section>
+
+        <section class="popup popup-delete">
+          <div class="popup__overlay"></div>
+          <div class="popup__container delete__container">
+            <button class="popup__close delete__close" aria-label="Close" type="button"></button>
+            <h3 class="popup__container-title delete__title">Are you sure?</h3>
+            <form class="popup__form" novalidate>
+              <button class="popup__container-save delete__save" type="submit">Yes</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="popup popup-photo">
+          <div class="popup__overlay"></div>
+          <div class="popup__container delete__container">
+            <button class="popup__close delete__close" aria-label="Close" type="button"></button>
+            <h3 class="popup__container-title delete__title">Change profile picture</h3>
+            <form class="popup__form" novalidate>
+              <input class="popup__container-about popup__input" id="photo-input" placeholder="Image URL" name="link" type="URL" required>
+                <span class="popup__input-error" id="photo-input-error"></span>
+              <button class="popup__container-save delete__save" type="submit">Save</button>
             </form>
           </div>
         </section>
@@ -81,7 +105,10 @@
           <img class="element__image">
           <div class="element__info">
             <h2 class="element__info-name"></h2>
-            <button class="element__info-like" aria-label="Like" type="button"></button>
+            <div class="element__info-right">
+              <button class="element__info-like" aria-label="Like" type="button"></button>
+              <p class="element__info-count">1</p>
+            </div>
           </div>
         </div>
       </template>

@@ -1,9 +1,9 @@
 @keyframes like-active {
 	from {
-		opacity: 30%;
+		opacity: .3;
 	}
 	to {
-		opacity: 100%;
+		opacity: 1;
 	}
 }
 

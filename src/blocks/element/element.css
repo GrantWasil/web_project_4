@@ -4,9 +4,12 @@
 @import url(./__info-like/_active/element__info-like_active.css);
 @import url(./__image/element__image.css);
 @import url(./__delete/element__delete.css);
+@import url(./__info-right/element__info-right.css);
+@import url(./__info-count/element__info-count.css);
 
 .element {
 	display: flex;
 	flex-direction: column;
 	max-width: 282px;
+	position: relative;
 }
