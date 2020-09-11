@@ -14,8 +14,6 @@ import {
     profilePhoto,
     profileNameText,
     profileInfoText,
-    authorization,
-    groupID,
 } from "./utils/constants.js"
 
 let items;
@@ -37,76 +35,6 @@ const newCardSection = new Section({
     }
 }, elementsContainer);
 
-fetch(`https://around.nomoreparties.co/v1/${groupID}/users/me`, {
-    headers: {
-        authorization
-    }
-})
-  .then((res) => res.json())
-  .then((data) => {
-      profileName.textContent = data.name;
-      profileInfo.textContent = data.about;
-      profilePhoto.src = data.avatar;
-  });
-
-const userProfile = new UserInfo({profileNameText, profileInfoText})
-userProfile.setEventListeners();
-
-const newPopup = new PopupWithForm({
-    handleFormSubmit: (formData) => {
-        const popupSave = document.querySelector('.popup__container-save');
-        const card = new Card(formData, '#element');
-        const cardElement = card.generateCard();
-        newCardSection.addItem(cardElement)
-        popupSave.textContent = "Saving..." 
-        fetch(`https://around.nomoreparties.co/v1/${groupID}/cards`, {
-            method: "POST",
-            headers: {
-                authorization,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: formData.name,
-                link: formData.link
-            })
-
-        })
-        .then(newPopup.close());
-        popupSave.textContent = "Save"
-    }
-}, '.popup-new', '.popup__form')
-
-
-const editPopup = new PopupWithForm({
-    handleFormSubmit: (formData) => {
-        const popupSave = document.querySelector('.popup__container-save');
-        popupSave.innerHTML = "Saving..."
-        userProfile.setProfile(formData)
-        .finally(editPopup.close())
-        popupSave.innerHTML = "Save"
-    }
-}, '.popup-edit', 'popup__form')
-
-editPopup.setEventListeners();
-newPopup.setEventListeners();
-
-newButton.addEventListener('click', () => {
-    newPopup.open();
-})
-
-editButton.addEventListener('click', () => {
-    editPopup.open();
-})
-
-const showInitalCards = (data) => {
-items = data;
-    
-}
-
-const handleReject = () => {
-    console.log("test")
-}
-
 api.getInitialCards()
   .then((data) => {
     items = data;
@@ -126,5 +54,54 @@ api.getInitialCards()
   .catch((err) => {
       console.log(err);
   })
+
+api.getProfileData()
+  .then((data) => {
+      profileName.textContent = data.name;
+      profileInfo.textContent = data.about;
+      profilePhoto.src = data.avatar;
+  });
+
+const userProfile = new UserInfo({profileNameText, profileInfoText}, api)
+userProfile.setEventListeners();
+
+const newPopup = new PopupWithForm({
+    handleFormSubmit: (formData) => {
+        const popupSave = document.querySelector('.popup__container-save');
+        const card = new Card(formData, '#element');
+        const cardElement = card.generateCard();
+        newCardSection.addItem(cardElement)
+        popupSave.textContent = "Saving..." 
+        api.createNewCard(formData.name, formData.link)
+            .then(() => {
+                newPopup.close()
+                popupSave.textContent = "Save"
+            });
+    }
+}, '.popup-new', '.popup__form')
+
+
+const editPopup = new PopupWithForm({
+    handleFormSubmit: (formData) => {
+        const popupSave = document.querySelector('.popup__container-save');
+        popupSave.innerHTML = "Saving..."
+        userProfile.setProfile(formData)
+        .then(editPopup.close())
+        popupSave.innerHTML = "Save"
+    }
+}, '.popup-edit', 'popup__form')
+
+editPopup.setEventListeners();
+newPopup.setEventListeners();
+
+newButton.addEventListener('click', () => {
+    newPopup.open();
+})
+
+editButton.addEventListener('click', () => {
+    editPopup.open();
+})
+
+
       
 
