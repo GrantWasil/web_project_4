@@ -60,18 +60,4 @@ class FormValidator {
 	}
 }
 
-const forms = [...document.querySelectorAll('.popup__form')]
-
-forms.forEach((form) => {
-	const validatedForm = new FormValidator({
-		formSelector: ".popup__form",
-		inputSelector: ".popup__input",
-		submitButtonSelector: ".popup__container-save",
-		inactiveButtonClass: "popup__container-save_inactive",
-		inputErrorClass: "popup__input_type_error",
-		errorClass: "popup__input-error_active"
-	  }, form)
-	validatedForm.enableValidation();
-})
-
 export default FormValidator;
