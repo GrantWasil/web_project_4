@@ -8,7 +8,9 @@ import Api from "./components/Api.js";
 import {
     elementsContainer,
     newButton,
+    newSave,
     editButton,
+    editSave,
     profileName,
     profileInfo,
     profilePhoto,
@@ -72,15 +74,14 @@ userProfile.setEventListeners();
 
 const newPopup = new PopupWithForm({
     handleFormSubmit: (formData) => {
-        const popupSave = document.querySelector('.popup__container-save');
         const card = new Card(formData, '#element');
         const cardElement = card.generateCard();
         newCardSection.addItem(cardElement)
-        popupSave.textContent = "Saving..." 
+        newSave.innerText = "Saving..." 
         api.createNewCard(formData.name, formData.link)
             .then(() => {
                 newPopup.close()
-                popupSave.textContent = "Save"
+                newSave.innerText = "Save"
             });
     }
 }, '.popup-new', '.popup__form')
@@ -88,12 +89,11 @@ const newPopup = new PopupWithForm({
 
 const editPopup = new PopupWithForm({
     handleFormSubmit: (formData) => {
-        const popupSave = document.querySelector('.popup__container-save');
-        popupSave.innerHTML = "Saving..."
+        editSave.innerText = "Saving..."
         userProfile.setProfile(formData)
         .then(() => {
             editPopup.close()
-            popupSave.innerHTML = "Save";
+            editSave.innerText = "Save";
         })
     }
 }, '.popup-edit', 'popup__form')

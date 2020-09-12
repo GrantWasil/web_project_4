@@ -26,7 +26,9 @@ export const items = [
 ];
 
 export const newButton = document.querySelector('.btn-new');
-export const editButton = document.querySelector('.btn-edit'); 
+export const editButton = document.querySelector('.btn-edit');
+export const newSave = document.querySelector('.popup-new').querySelector('.popup__container-save');
+export const editSave = document.querySelector('.popup-edit').querySelector('.popup__container-save'); 
 
 export const elementsContainer = '.elements';
 
