@@ -22,7 +22,7 @@ export default class Card {
 		return cardElement;
 	}
 
-	generateCard() {
+	generateCard(profileId, item) {
 		this._element = this._getTemplate();
 		this._cardElement = this._element.querySelector('.element');
 		const imageElement = this._element.querySelector('.element__image');
@@ -32,7 +32,12 @@ export default class Card {
 		imageElement.alt = `Image of ${this._text}`;
 		this._element.querySelector('.element__info-name').textContent = this._text;
 		imageLikes.textContent = this._likes.length;
-
+		if (item.owner._id != profileId) {
+			this._element.querySelector('.element__delete').style.display = "none"
+		}
+		if (item.likes.some(like => like._id === profileId)) {
+			this._element.querySelector('.element__info-like').classList.add('element__info-like_active');
+		}
 		return this._element;
 	}
 

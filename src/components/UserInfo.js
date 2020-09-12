@@ -1,8 +1,6 @@
 import {
     profileName,
     profileInfo,
-    groupID,
-    authorization,
     profilePhoto
 } from "../utils/constants.js"
 import PopupWithForm from "./PopupWithForm.js"

@@ -15,7 +15,7 @@ import {
     profileInfo,
     profilePhoto,
     profileNameText,
-    profileInfoText,
+    profileInfoText
 } from "./utils/constants.js"
 
 let items;
@@ -44,6 +44,7 @@ api.getProfileData()
       profileName.textContent = data.name;
       profileInfo.textContent = data.about;
       profilePhoto.src = data.avatar;
+      profileInfo.id = data._id;
   }).then()
 
 api.getInitialCards()
@@ -53,13 +54,7 @@ const defaultCardList = new Section({
     data: items,
     renderer: (item) => {
         const card = new Card(item, '#element')
-        const cardElement = card.generateCard();
-        if (item.owner.name != profileName.textContent) {
-            cardElement.querySelector('.element__delete').remove()
-        }
-        if (item.likes.some(like => like.name === profileName.textContent)) {
-            cardElement.querySelector('.element__info-like').classList.add('element__info-like_active');
-        }
+        const cardElement = card.generateCard(profileInfo.id, item);
         defaultCardList.addItem(cardElement);
     }
 }, elementsContainer);
@@ -107,6 +102,20 @@ newButton.addEventListener('click', () => {
 
 editButton.addEventListener('click', () => {
     editPopup.open();
+})
+
+const forms = [...document.querySelectorAll('.popup__form')]
+
+forms.forEach((form) => {
+	const validatedForm = new FormValidator({
+		formSelector: ".popup__form",
+		inputSelector: ".popup__input",
+		submitButtonSelector: ".popup__container-save",
+		inactiveButtonClass: "popup__container-save_inactive",
+		inputErrorClass: "popup__input_type_error",
+		errorClass: "popup__input-error_active"
+	  }, form)
+	validatedForm.enableValidation();
 })
 
 
