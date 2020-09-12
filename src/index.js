@@ -35,32 +35,37 @@ const newCardSection = new Section({
     }
 }, elementsContainer);
 
-api.getInitialCards()
-  .then((data) => {
-    items = data;
-    const defaultCardList = new Section({
-        data: items,
-        renderer: (item) => {
-            const card = new Card(item, '#element')
-            const cardElement = card.generateCard();
-            if (item.owner.name != profileName.textContent) {
-                cardElement.querySelector('.element__delete').remove()
-            }
-            defaultCardList.addItem(cardElement);
-            }
-    }, elementsContainer);
-    defaultCardList.renderItems();
-  })
-  .catch((err) => {
-      console.log(err);
-  })
+
 
 api.getProfileData()
   .then((data) => {
       profileName.textContent = data.name;
       profileInfo.textContent = data.about;
       profilePhoto.src = data.avatar;
-  });
+  }).then()
+
+api.getInitialCards()
+.then((data) => {
+items = data;
+const defaultCardList = new Section({
+    data: items,
+    renderer: (item) => {
+        const card = new Card(item, '#element')
+        const cardElement = card.generateCard();
+        if (item.owner.name != profileName.textContent) {
+            cardElement.querySelector('.element__delete').remove()
+        }
+        if (item.likes.some(like => like.name === profileName.textContent)) {
+            cardElement.querySelector('.element__info-like').classList.add('element__info-like_active');
+        }
+        defaultCardList.addItem(cardElement);
+    }
+}, elementsContainer);
+defaultCardList.renderItems();
+})
+.catch((err) => {
+    console.log(err);
+})
 
 const userProfile = new UserInfo({profileNameText, profileInfoText}, api)
 userProfile.setEventListeners();
@@ -86,8 +91,10 @@ const editPopup = new PopupWithForm({
         const popupSave = document.querySelector('.popup__container-save');
         popupSave.innerHTML = "Saving..."
         userProfile.setProfile(formData)
-        .then(editPopup.close())
-        popupSave.innerHTML = "Save"
+        .then(() => {
+            editPopup.close()
+            popupSave.innerHTML = "Save";
+        })
     }
 }, '.popup-edit', 'popup__form')
 
